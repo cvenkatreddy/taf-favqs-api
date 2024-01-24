@@ -90,3 +90,12 @@ Cypress.Commands.add("createSession", (name, login, password) => {
     }
   );
 });
+
+// -- This is to create session and cache it across specs
+Cypress.Commands.add("destroySession", () => {
+  SessionService()
+    .DeleteSession()
+    .then((response) => {
+      cy.verifyStatusCode(response, HttpStatusCodes.Success);
+    });
+});
