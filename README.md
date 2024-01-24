@@ -16,7 +16,7 @@ You know setting up framework is very quick!
 ## set baseurl and apiKey
 
 1. go to cypress.config.js file
-2. set baseurl and apiKey
+2. set baseurl, apiKey, login and password
 
 ## Dashboard execution
 
