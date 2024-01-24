@@ -56,3 +56,37 @@ Cypress.Commands.add("requestFavQuote", (response) => {
 Cypress.Commands.add("verifyErrorMessage", (response, errorMessage) => {
   cy.wrap(response).its("body.message").should("be.equal", errorMessage);
 });
+
+// -- This is to create session and cache it across specs
+Cypress.Commands.add("createSession", (name, login, password) => {
+  cy.session(
+    name,
+    () => {
+      const data = {
+        body: {
+          user: {
+            login: login,
+            password: password,
+          },
+        },
+      };
+      SessionService()
+        .PostCreateSession(data)
+        .then((response) => {
+          cy.verifyStatusCode(response, HttpStatusCodes.Success);
+          window.localStorage.setItem("userToken", response.body["User-Token"]);
+        });
+    },
+    {
+      validate() {
+        // calling Get user to validate session
+        UserService()
+          .GetUserById(30305)
+          .then((response) => {
+            cy.verifyStatusCode(response, HttpStatusCodes.Success);
+          });
+      },
+      cacheAcrossSpecs: true,
+    }
+  );
+});
