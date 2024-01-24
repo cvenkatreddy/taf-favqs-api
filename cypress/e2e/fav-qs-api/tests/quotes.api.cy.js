@@ -1,4 +1,4 @@
-import { ErrorCodes, HttpStatusCodes } from "../../../../types";
+import { HttpStatusCodes } from "../../../../types";
 import { QuotesService } from "../quotesConsumer";
 
 describe("Quotes Service", function () {
