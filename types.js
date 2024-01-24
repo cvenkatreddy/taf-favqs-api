@@ -9,7 +9,7 @@ export const HttpStatusCodes = Object.freeze({
 export const ErrorCodes = Object.freeze({
   10: "Invalid request.",
   11: "Permission denied.",
-  20: "No user session found.",
+  20: "User session not found.",
   21: "Invalid login or password.",
   22: "Login is not active. Contact support@favqs.com.",
   23: "User login or password is missing.",
