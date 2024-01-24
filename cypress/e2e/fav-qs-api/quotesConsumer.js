@@ -25,12 +25,5 @@ export const QuotesService = () => {
         url: `${routes.apiQuotes}/${data.body.id}/fav`,
         ...data,
       }),
-
-    PostCreateSession: (data) =>
-      cy.request({
-        method: "post",
-        url: `${routes.apiSession}`,
-        ...data,
-      }),
   };
 };
