@@ -2,7 +2,7 @@ import { ErrorCodes, HttpStatusCodes } from "../../../../types";
 import { QuotesService } from "../quotesConsumer";
 
 describe("Quotes Service", function () {
-  before("Create a session", function () {
+  beforeEach("Create a session", function () {
     cy.createSession("root", Cypress.env("login"), Cypress.env("password"));
   });
 
@@ -37,14 +37,15 @@ describe("Quotes Service", function () {
             .PutQuotesFav(data)
             .then((response) => {
               cy.verifyStatusCode(response, HttpStatusCodes.Success);
-              // Mismatch in the error message actual:No user session found. expected:  User session not found.
-              cy.verifyErrorMessage(response, ErrorCodes[20]);
+              cy.wrap(response)
+                .its("body.favorites_count")
+                .should("be.equal", 1);
             });
         });
       });
   });
 });
 
-before("Clear session", function () {
+afterEach("Clear session", function () {
   Cypress.session.clearAllSavedSessions();
 });
