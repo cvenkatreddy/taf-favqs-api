@@ -5,7 +5,7 @@ import { HttpStatusCodes } from "../../types";
 // -- This is to overwrite request command to set the default headers for every request--
 Cypress.Commands.overwrite("request", function (fn, options) {
   cy.window().then((win) => {
-    let userToken = win.localStorage.Usertoken;
+    let userToken = win.localStorage.getItem("userToken");
     if (!options?.hasOwnProperty("headers")) {
       options["headers"] = { "Content-Type": "application/json;charset=UTF-8" };
       options.headers["Authorization"] = `Token token=${Cypress.env("apiKey")}`;
