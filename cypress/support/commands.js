@@ -4,12 +4,16 @@ import { HttpStatusCodes } from "../../types";
 
 // -- This is to overwrite request command to set the default headers for every request--
 Cypress.Commands.overwrite("request", function (fn, options) {
-  if (!options?.hasOwnProperty("headers")) {
-    options["headers"] = { "Content-Type": "application/json;charset=UTF-8" };
-    options.headers["Authorization"] = `Token token=${Cypress.env("apiKey")}`;
-  }
-  return cy.wrap(fn({ ...options }), { timeout: 100000 }).then((response) => {
-    console.log("<< response", response);
+  cy.window().then((win) => {
+    let userToken = win.localStorage.Usertoken;
+    if (!options?.hasOwnProperty("headers")) {
+      options["headers"] = { "Content-Type": "application/json;charset=UTF-8" };
+      options.headers["Authorization"] = `Token token=${Cypress.env("apiKey")}`;
+      options.headers["User-Token"] = userToken;
+    }
+    return cy.wrap(fn({ ...options }), { timeout: 100000 }).then((response) => {
+      console.log("<< response", response);
+    });
   });
 });
 
@@ -40,6 +44,8 @@ Cypress.Commands.add("verifyErrorMessage", (response, errorMessage) => {
 
 // -- This is to create session and cache it across specs
 Cypress.Commands.add("createSession", (name, login, password) => {
+  cy.log(login);
+  cy.log(password);
   cy.session(
     name,
     () => {
