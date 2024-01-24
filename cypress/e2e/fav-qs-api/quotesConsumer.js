@@ -1,6 +1,5 @@
 const routes = {
   apiQuotes: "quotes",
-  apiSession: "session",
 };
 
 export const QuotesService = () => {
