@@ -1,26 +1,7 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
+import { UserService } from "../e2e/fav-qs-api/userConsumer";
+import { SessionService } from "../e2e/fav-qs-api/sessionConsumer";
+import { HttpStatusCodes } from "../../types";
+
 // -- This is to overwrite request command to set the default headers for every request--
 Cypress.Commands.overwrite("request", function (fn, options) {
   if (!options?.hasOwnProperty("headers")) {
