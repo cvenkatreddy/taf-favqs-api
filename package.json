@@ -1,0 +1,17 @@
+{
+  "name": "taf-favqs",
+  "version": "1.0.0",
+  "description": "Test Automation Framework for testing FavQs API",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "npx cypress open",
+    "cy:run": "npx cypress run",
+    "dev-cy:run": "npx cypress run --config-file cypress/configs/cypress.dev.config.js",
+    "stg-cy:run": "npx cypress run --config-file cypress/configs/cypress.stg.config.js"
+  },
+  "author": "cvenkatreddy",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.6.3"
+  }
+}
