@@ -13,7 +13,7 @@ You know setting up framework is very quick!
 
 1. npm install
 
-## set baseurl and apiKey
+## set env vars in cypress.config.js
 
 1. go to cypress.config.js file
 2. set baseurl, apiKey, login and password
