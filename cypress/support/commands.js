@@ -44,8 +44,6 @@ Cypress.Commands.add("verifyErrorMessage", (response, errorMessage) => {
 
 // -- This is to create session and cache it across specs
 Cypress.Commands.add("createSession", (name, login, password) => {
-  cy.log(login);
-  cy.log(password);
   cy.session(
     name,
     () => {
